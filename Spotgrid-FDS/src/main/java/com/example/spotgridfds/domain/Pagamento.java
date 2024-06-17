@@ -29,7 +29,7 @@ public class Pagamento {
     }
 
     public Assinatura getAssinaturaPaga() {
-        return assinaturaPaga;
+        return this.assinaturaPaga;
     }
 
     public void setAssinaturaPaga(Assinatura assinaturaPaga) {
