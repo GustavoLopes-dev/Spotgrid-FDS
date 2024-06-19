@@ -1,4 +1,4 @@
 package com.example.spotgridfds.repository;
 
-public interface AssinaturaRepository {
+public interface AplicativoRepository {
 }

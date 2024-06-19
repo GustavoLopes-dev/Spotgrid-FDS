@@ -1,40 +1,37 @@
-CREATE TABLE App
+CREATE TABLE aplicativo
 (
-    codigo              BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nome                VARCHAR(255) NOT NULL,
-    custoMensal         DOUBLE NOT NULL
+    codigo BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome   VARCHAR(255) NOT NULL,
+    custo_mensal DOUBLE NOT NULL
 );
 
-CREATE TABLE Cliente
+CREATE TABLE cliente
 (
-    codigo              BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nome                VARCHAR(255) NOT NULL,
-    email               VARCHAR(255) NOT NULL
+    codigo BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome   VARCHAR(255) NOT NULL,
+    email  VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Assinatura
+CREATE TABLE usuario
 (
-    codigo              BIGINT AUTO_INCREMENT PRIMARY KEY,
-    codigoCliente       BIGINT NOT NULL,
-    codigoAplicativo    BIGINT NOT NULL,
-    inicioVigencia      DATE   NOT NULL,
-    fimVigencia         DATE   NOT NULL,
-    FOREIGN KEY (codigoCliente) REFERENCES Cliente (codigo),
-    FOREIGN KEY (codigoAplicativo) REFERENCES App (codigo)
+    usuario VARCHAR(255) PRIMARY KEY,
+    senha   VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Pagamento
+CREATE TABLE assinatura
 (
-    codigo              BIGINT AUTO_INCREMENT PRIMARY KEY,
-    codigoAssinatura    BIGINT NOT NULL,
-    valorPago           DOUBLE NOT NULL,
-    dataPagamento       DATE   NOT NULL,
-    promocao            VARCHAR(255),
-    FOREIGN KEY (codigoAssinatura) REFERENCES Assinatura (codigo)
+    codigo        BIGINT AUTO_INCREMENT PRIMARY KEY,
+    aplicativo_id BIGINT NOT NULL,
+    cliente_id    BIGINT NOT NULL,
+    FOREIGN KEY (aplicativo_id) REFERENCES aplicativo (codigo),
+    FOREIGN KEY (cliente_id) REFERENCES cliente (codigo)
 );
 
-CREATE TABLE Usuario
+CREATE TABLE pagamento
 (
-    usuario             VARCHAR(255) PRIMARY KEY,
-    senha               VARCHAR(255) NOT NULL
+    codigo         BIGINT AUTO_INCREMENT PRIMARY KEY,
+    assinatura_id  BIGINT NOT NULL,
+    data_pagamento DATE   NOT NULL,
+    valor DOUBLE NOT NULL,
+    FOREIGN KEY (assinatura_id) REFERENCES assinatura (codigo)
 );
